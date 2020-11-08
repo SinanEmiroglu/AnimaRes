@@ -1,5 +1,5 @@
-﻿using Cinemachine;
-using UnityEngine;
+﻿using UnityEngine;
+using Cinemachine;
 
 namespace AnimaRes
 {
@@ -7,16 +7,22 @@ namespace AnimaRes
     {
         [SerializeField] private CinemachineVirtualCamera virtualMainCam;
         [SerializeField] private CinemachineVirtualCamera virtualZoomCam;
-        [SerializeField] private float distance;
+        [SerializeField] private float zoomDistance;
 
         private void Start()
         {
-            SphereManager.Instance.OnSelected += SelectedHandler;
+            GameManager.Instance.OnSelected += SelectedHandler;
+            GameManager.Instance.OnRestart += RestartHandler;
+        }
+
+        private void RestartHandler()
+        {
+            virtualZoomCam.Priority = virtualMainCam.Priority - 1;
         }
 
         private void SelectedHandler(Sphere sphere)
         {
-            virtualZoomCam.transform.position = sphere.transform.position - (Vector3.forward * sphere.transform.localScale.z * distance);
+            virtualZoomCam.transform.position = sphere.transform.position - (Vector3.forward * sphere.transform.localScale.z * zoomDistance);
             virtualZoomCam.Priority = virtualMainCam.Priority + 1;
         }
 
@@ -24,9 +30,10 @@ namespace AnimaRes
         {
             virtualZoomCam.Priority = virtualMainCam.Priority;
 
-            if (SphereManager.InstanceExists)
+            if (GameManager.InstanceExists)
             {
-                SphereManager.Instance.OnSelected -= SelectedHandler;
+                GameManager.Instance.OnSelected -= SelectedHandler;
+                GameManager.Instance.OnRestart -= RestartHandler;
             }
         }
     }

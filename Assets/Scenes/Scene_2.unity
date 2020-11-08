@@ -135,11 +135,11 @@ GameObject:
   - component: {fileID: 247428477}
   - component: {fileID: 247428476}
   - component: {fileID: 247428475}
-  - component: {fileID: 247428474}
-  - component: {fileID: 247428473}
   - component: {fileID: 247428478}
+  - component: {fileID: 247428473}
+  - component: {fileID: 247428474}
   m_Layer: 0
-  m_Name: Min Globe
+  m_Name: Min Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -156,7 +156,7 @@ Transform:
   m_LocalPosition: {x: 6, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 352292302}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &247428473
@@ -171,7 +171,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd0bf5037614a8d43b582e26d4df37ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 100
+  speed: 4
+  radius: 2
   target: {fileID: 1935792665}
 --- !u!114 &247428474
 MonoBehaviour:
@@ -198,8 +199,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   renderer: {fileID: 247428476}
-  fadeInDuration: 2
-  fadeOutDuration: 2
+  fadeInDuration: 1.5
+  fadeOutDuration: 1
 --- !u!135 &247428475
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -275,7 +276,41 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotator: {fileID: 247428473}
-  extraGameObject: {fileID: 0}
+  transition: {fileID: 247428474}
+  extraGameObjectPrefab: {fileID: -7293515195582898395, guid: 031e82c56ea2d22489435efc0fc8b352, type: 3}
+--- !u!1 &352292301
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 352292302}
+  m_Layer: 0
+  m_Name: Spheres
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &352292302
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 352292301}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 247428472}
+  - {fileID: 1935792665}
+  - {fileID: 2091007126}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1935792664
 GameObject:
   m_ObjectHideFlags: 0
@@ -288,11 +323,11 @@ GameObject:
   - component: {fileID: 1935792670}
   - component: {fileID: 1935792669}
   - component: {fileID: 1935792668}
-  - component: {fileID: 1935792667}
-  - component: {fileID: 1935792666}
   - component: {fileID: 1935792671}
+  - component: {fileID: 1935792666}
+  - component: {fileID: 1935792667}
   m_Layer: 0
-  m_Name: Mid Globe
+  m_Name: Mid Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -309,7 +344,7 @@ Transform:
   m_LocalPosition: {x: 4, y: 0, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 352292302}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1935792666
@@ -324,7 +359,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd0bf5037614a8d43b582e26d4df37ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 50
+  speed: 1
+  radius: 4.5
   target: {fileID: 2091007126}
 --- !u!114 &1935792667
 MonoBehaviour:
@@ -351,8 +387,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   renderer: {fileID: 1935792669}
-  fadeInDuration: 2
-  fadeOutDuration: 2
+  fadeInDuration: 1.5
+  fadeOutDuration: 1
 --- !u!135 &1935792668
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -428,7 +464,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotator: {fileID: 1935792666}
-  extraGameObject: {fileID: 0}
+  transition: {fileID: 1935792667}
+  extraGameObjectPrefab: {fileID: -1603890013435282714, guid: 593a6f299d3529f4c9c7904ee81f9dbb, type: 3}
 --- !u!1 &2091007121
 GameObject:
   m_ObjectHideFlags: 0
@@ -441,10 +478,10 @@ GameObject:
   - component: {fileID: 2091007125}
   - component: {fileID: 2091007124}
   - component: {fileID: 2091007123}
-  - component: {fileID: 2091007122}
   - component: {fileID: 2091007127}
+  - component: {fileID: 2091007122}
   m_Layer: 0
-  m_Name: Max Globe
+  m_Name: Max Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -475,8 +512,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   renderer: {fileID: 2091007124}
-  fadeInDuration: 2
-  fadeOutDuration: 2
+  fadeInDuration: 1.5
+  fadeOutDuration: 1
 --- !u!135 &2091007123
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -550,7 +587,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 3, y: 3, z: 3}
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 352292302}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2091007127
@@ -566,4 +603,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotator: {fileID: 0}
-  extraGameObject: {fileID: 0}
+  transition: {fileID: 2091007122}
+  extraGameObjectPrefab: {fileID: 3694716753362038823, guid: 517d6f6f6c72c224bbff5f3c29838eaa, type: 3}

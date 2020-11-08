@@ -7,10 +7,20 @@ namespace AnimaRes
 {
     public class SceneLoader : MonoBehaviour
     {
+        public const string FIRST_SCENE = "Scene_1";
+        public const string SECOND_SCENE = "Scene_2";
+        public const string THIRD_SCENE = "Scene_3";
+
+        public static int GetActiveSceneCount => AllAvailableGameObjectsByScene.Keys.Count;
         public static event Action<string> OnSceneLoaded = delegate { };
         public static event Action<string> OnSceneUnloaded = delegate { };
-
         public static Dictionary<string, GameObject[]> AllAvailableGameObjectsByScene = new Dictionary<string, GameObject[]>();
+
+        private void OnEnable()
+        {
+            SceneManager.sceneLoaded += SceneLoadedHandler;
+            SceneManager.sceneUnloaded += SceneUnloadedHandler;
+        }
 
         public static void MoveGameObjectToScene(GameObject gameObject, string sceneName)
         {
@@ -19,13 +29,11 @@ namespace AnimaRes
 
         public static void Load(string sceneName)
         {
-            SceneManager.sceneLoaded += SceneLoadedHandler;
             SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
         }
 
         public static void Unload(string sceneName)
         {
-            SceneManager.sceneUnloaded += SceneUnloadedHandler;
             SceneManager.UnloadSceneAsync(sceneName);
         }
 
@@ -41,12 +49,21 @@ namespace AnimaRes
             }
 
             OnSceneLoaded?.Invoke(scene.name);
-            SceneManager.sceneLoaded -= SceneLoadedHandler;
         }
 
         private static void SceneUnloadedHandler(Scene scene)
         {
+            if (AllAvailableGameObjectsByScene.ContainsKey(scene.name))
+            {
+                AllAvailableGameObjectsByScene.Remove(scene.name);
+            }
+
             OnSceneUnloaded?.Invoke(scene.name);
+        }
+
+        private void OnDisable()
+        {
+            SceneManager.sceneLoaded -= SceneLoadedHandler;
             SceneManager.sceneUnloaded -= SceneUnloadedHandler;
         }
     }
