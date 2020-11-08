@@ -18,7 +18,7 @@ namespace AnimaRes
 
         private void OnEnable()
         {
-           SceneLoader.OnSceneLoaded += SceneLoadedHandler;
+            SceneLoader.OnSceneLoaded += SceneLoadedHandler;
             SceneLoader.OnSceneUnloaded += SceneUnloadedHandler;
         }
 

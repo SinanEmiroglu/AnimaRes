@@ -9,10 +9,10 @@ namespace AnimaRes
         private void OnEnable()
         {
             GameManager.Instance.OnRestart += RestartHandler;
-            transition.OnFinalEnd.AddListener(HandleFinalTransition);
+            transition.OnFinalEnd.AddListener(HandleFinalEndTransition);
         }
 
-        private void HandleFinalTransition()
+        private void HandleFinalEndTransition()
         {
             Destroy(gameObject);
         }

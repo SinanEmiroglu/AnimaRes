@@ -17,11 +17,15 @@ namespace AnimaRes
 
         private void SceneUnloadedHandler(string sceneName)
         {
-            timelineSlider.value = SceneLoader.GetActiveSceneCount;
-            sceneIndexText.text = timelineSlider.value.ToString();
+            UpdateTimeLine();
         }
 
         private void SceneLoadedHandler(string sceneName)
+        {
+            UpdateTimeLine();
+        }
+
+        private void UpdateTimeLine()
         {
             timelineSlider.value = SceneLoader.GetActiveSceneCount;
             sceneIndexText.text = timelineSlider.value.ToString();
